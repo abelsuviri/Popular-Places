@@ -9,6 +9,9 @@ import java.util.List;
  */
 
 public class ResponseObjectModel {
+    @SerializedName("headerLocation")
+    public String location;
+
     @SerializedName("groups")
     public List<GroupsModel> groups;
 }

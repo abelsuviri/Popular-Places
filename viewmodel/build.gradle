@@ -7,6 +7,10 @@ android {
         targetSdkVersion project.ext.sdkTargetVersion
         versionCode 1
         versionName "1.0"
+
+        buildConfigField 'String', 'APP_ID', '\"M4EDHQ5G3V20ASJPXMWXXQBZVE3A5JDMGNRTHWIHL2M4S1BC\"'
+        buildConfigField 'String', 'APP_KEY', '\"WSABOY4CIZ42BEALHGRGCHJEVZ0QXH5FALQUISBVFC0FNTEG\"'
+        buildConfigField 'String', 'API_VERSION', '\"20180323\"'
     }
 
     buildTypes {
