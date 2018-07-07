@@ -3,6 +3,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.0-alpha02'
@@ -13,9 +14,10 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
 
-    ext.butterknifeVersion = '8.8.1'
+    ext.butterknifeVersion = '9.0.0-SNAPSHOT'
     ext.constraintLayoutVersion = '1.0.2'
     ext.daggerVersion = '2.16'
     ext.junitVersion = '4.12'
