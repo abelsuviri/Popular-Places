@@ -26,8 +26,10 @@ dependencies {
     api project(path: ':data')
     api project(path: ':viewmodel')
 
+    implementation "androidx.appcompat:appcompat:$androidXVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.recyclerview:recyclerview:$androidXVersion"
     implementation "com.jakewharton:butterknife:$butterknifeVersion"
-    implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
     implementation "com.google.dagger:dagger-android:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"

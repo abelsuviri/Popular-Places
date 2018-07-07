@@ -17,8 +17,9 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
 
+    ext.androidXVersion = '1.0.0-beta01'
     ext.butterknifeVersion = '9.0.0-SNAPSHOT'
-    ext.constraintLayoutVersion = '1.0.2'
+    ext.constraintLayoutVersion = '1.1.2'
     ext.daggerVersion = '2.16'
     ext.junitVersion = '4.12'
     ext.gsonVersion = '2.8.2'

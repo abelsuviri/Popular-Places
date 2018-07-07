@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Popular Places</string>
+    <string name="city_name_hint">City/town name</string>
+    <string name="search">Search</string>
+    <string-array name="venues_categories">
+        <item>arts</item>
+        <item>coffee</item>
+        <item>drinks</item>
+        <item>food</item>
+        <item>outdoors</item>
+        <item>shops</item>
+        <item>sights</item>
+        <item>trending</item>
+    </string-array>
+
+    <string name="request_error">Error retrieving the data</string>
+    <string name="retry">Retry</string>
 </resources>
