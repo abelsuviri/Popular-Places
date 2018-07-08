@@ -20,6 +20,7 @@ import java.util.List;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.Observer;
 import io.reactivex.Observable;
+import retrofit2.HttpException;
 
 /**
  * @author Abel Suviri
@@ -62,6 +63,7 @@ public class MainViewModelTest {
 
         Assert.assertEquals(mainViewModel.getIsFailed().getValue(), false);
         Assert.assertEquals(placesList, response.response.groups.get(0).items);
+        Assert.assertEquals(mainViewModel.cityName(), response.response.location);
     }
 
     @Test
@@ -74,5 +76,15 @@ public class MainViewModelTest {
 
         Assert.assertEquals(mainViewModel.getIsFailed().getValue(), true);
         Assert.assertNotEquals(placesList, response.response.groups.get(0).items);
+        Assert.assertNotEquals(mainViewModel.cityName(), response.response.location);
+    }
+
+    @Test
+    public void test_get_non_existing_place() {
+        Mockito.when(placesService.getPlaces("Malaga", "sights", BuildConfig.APP_ID, BuildConfig.APP_KEY, BuildConfig.API_VERSION))
+                .thenReturn(Observable.error(new HttpException(MockResponse.mockNonExistingPlace)));
+        mainViewModel.getPopularPlaces("Malaga", "sights").observeForever(observer);
+
+        Assert.assertEquals(mainViewModel.doesPlaceExists().getValue(), false);
     }
 }

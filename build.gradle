@@ -18,9 +18,12 @@ allprojects {
     }
 
     ext.androidXVersion = '1.0.0-beta01'
+    ext.androidTestVersion = '1.0.2'
     ext.butterknifeVersion = '9.0.0-SNAPSHOT'
     ext.constraintLayoutVersion = '1.1.2'
+    ext.cucumberVersion = '1.2.5'
     ext.daggerVersion = '2.16'
+    ext.espressoVersion = '3.0.2'
     ext.junitVersion = '4.12'
     ext.gsonVersion = '2.8.2'
     ext.lifecycleVersion = '1.1.0'

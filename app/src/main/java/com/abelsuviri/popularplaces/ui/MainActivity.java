@@ -3,6 +3,7 @@ package com.abelsuviri.popularplaces.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,7 +30,7 @@ import dagger.android.AndroidInjection;
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.cityName)
-    TextView cityName;
+    EditText cityName;
 
     @BindView(R.id.placeCategory)
     Spinner placeCategory;
@@ -67,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
                 showRetryDialog();
             }
         });
+
+        mainViewModel.doesPlaceExists().observe(this, doesExists -> {
+            if (!doesExists) {
+                showNonExisting();
+            }
+        });
     }
 
     /**
@@ -82,11 +89,24 @@ public class MainActivity extends AppCompatActivity {
         }).show();
     }
 
+    /**
+     * This method displays an AlertDialog to warn the user that the place does not exists.
+     */
+    private void showNonExisting() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage(getResources().getString(R.string.place_does_not_exists));
+        builder.setCancelable(false);
+        builder.setPositiveButton(getResources().getString(R.string.retry), (dialog, i) -> {
+            dialog.dismiss();
+        }).show();
+    }
+
     @OnClick(R.id.search)
     public void onClick() {
         mainViewModel.getPopularPlaces(cityName.getText().toString(), placeCategory.getSelectedItem().toString()).observe(this, response -> {
             Intent intent = new Intent(this, PlacesListActivity.class);
             intent.putExtra(PlacesListActivity.PLACES_LIST, new Gson().toJson(response));
+            intent.putExtra(PlacesListActivity.CITY_NAME, mainViewModel.cityName());
             startActivity(intent);
         });
     }

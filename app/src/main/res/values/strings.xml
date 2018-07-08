@@ -15,4 +15,8 @@
 
     <string name="request_error">Error retrieving the data</string>
     <string name="retry">Retry</string>
+
+    <string name="place_does_not_exists">The city/town provided does not exists.</string>
+
+    <string name="address_title">Address:</string>
 </resources>

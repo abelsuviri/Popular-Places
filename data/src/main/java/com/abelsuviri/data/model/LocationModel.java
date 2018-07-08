@@ -12,7 +12,4 @@ public class LocationModel {
 
     @SerializedName("postalCode")
     public String postCode;
-
-    @SerializedName("distance")
-    public String distance;
 }

@@ -15,6 +15,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.HttpException;
 
 /**
  * @author Abel Suviri
@@ -23,6 +24,7 @@ import io.reactivex.schedulers.Schedulers;
 public class MainViewModel extends ViewModel {
     private PlacesService placesService;
     private MutableLiveData<String> cityName = new MutableLiveData<>();
+    private MutableLiveData<Boolean> placesExists = new MutableLiveData<>();
     private MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
     private MutableLiveData<Boolean> isFailed = new MutableLiveData<>();
 
@@ -49,7 +51,11 @@ public class MainViewModel extends ViewModel {
                     cityName.setValue(response.response.location);
                     placesList.setValue(response.response.groups.get(0).items);
                 }, error -> {
-                    isFailed.setValue(true);
+                    if (error instanceof HttpException && ((HttpException) error).code() == 400) {
+                        placesExists.setValue(false);
+                    } else {
+                        isFailed.setValue(true);
+                    }
                     isLoading.setValue(false);
                 });
 
@@ -70,5 +76,21 @@ public class MainViewModel extends ViewModel {
      */
     public MutableLiveData<Boolean> getIsFailed() {
         return isFailed;
+    }
+
+    /**
+     * This method will return the city name
+     * @return string city name
+     */
+    public String cityName() {
+        return cityName.getValue();
+    }
+
+    /**
+     * This method will return if the place exists
+     * @return boolean placesExists
+     */
+    public MutableLiveData<Boolean> doesPlaceExists() {
+        return placesExists;
     }
 }

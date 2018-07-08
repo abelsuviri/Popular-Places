@@ -8,6 +8,7 @@ android {
         targetSdkVersion project.ext.sdkTargetVersion
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "com.abelsuviri.popularplaces.tests.Instrumentation"
     }
     buildTypes {
         release {
@@ -36,6 +37,13 @@ dependencies {
     implementation "com.squareup.picasso:picasso:$picassoVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    androidTestImplementation "com.android.support.test:rules:$androidTestVersion"
+    androidTestImplementation "com.android.support.test:runner:$androidTestVersion"
+    androidTestImplementation "info.cukes:cucumber-android:$cucumberVersion"
+    androidTestImplementation "info.cukes:cucumber-picocontainer:$cucumberVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVersion"
 
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
